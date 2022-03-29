@@ -1,0 +1,35 @@
+<form class="example-form" [formGroup]="contactForm" (ngSubmit)="onSaveForm()" >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput [formControl]="nameFormControl" required>
+      <mat-error *ngIf="nameFormControl.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="emailMatcher">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor inserta un correo válido.
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          El email es <strong>requerido</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Telefono</mat-label>
+        <input type="tel" matInput [formControl]="phoneFormControl" required>
+        <mat-error *ngIf="messageFormControl.invalid">{{getTelErrorMessage()}}</mat-error>
+      </mat-form-field>
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Deja un comentario</mat-label>
+      <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="messageFormControl" required></textarea>
+      <mat-error *ngIf="messageFormControl.invalid">{{getMessageErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div class="example-button-row">        
+        <button mat-raised-button color="primary" >Primary</button>
+    </div>
+</form>
+  
