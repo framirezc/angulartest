@@ -14,7 +14,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 })
 export class MoviesComponent implements OnInit {
 
-  displayedColumns: string[] = ['_id','title', 'year', 'cast', 'genres'];  
+  displayedColumns: string[] = ['title', 'year', 'cast', 'genres'];  
   dataSource: any;  
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;

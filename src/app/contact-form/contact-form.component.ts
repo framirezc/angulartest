@@ -16,14 +16,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ContactFormComponent{
 
-  @Input() maxLengthMessage: number = 150 ;
+  @Input() maxLengthMessage: number = 20 ;
   public contactForm: FormGroup;
   
   constructor() {
     this.contactForm = this.createForm();
   }
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  nameFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[A-za-a]*[0-9]+?$/g)]);
+  nameFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[A-z*a-z*0-9*]+?$/g)]);
   phoneFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\+(\d){12}$/g)]);
   messageFormControl = new FormControl('', [Validators.required, Validators.maxLength(this.maxLengthMessage)]);
 
@@ -42,6 +42,10 @@ export class ContactFormComponent{
     if (this.nameFormControl.hasError('required')) {      
       return 'Debes ingresar un nombre';
     }
+
+    if (this.nameFormControl.hasError('pattern')) {      
+      return 'El nombre solo puede contener letras y números.';
+    }    
     return '';
   }
 
